@@ -16,3 +16,22 @@ These are the steps to recreate:
 I eventually want to use the [Karma coverage threshold reporter](https://github.com/lithiumtech/karma-threshold-reporter) to fail the build
 if the coverage we desire isn't met.  With the way the coverage report is
 being generated, it's always 100% coverage.
+
+## UPDATE
+
+I got this to work [here](https://github.com/flacito/yeoman-fountain-test/commit/1975e88888c4f30109897a639a1247899170a629#diff-04ad71367528f8567863710c95f55fcd)
+
+All I did was add remap-coverage and threshold reporters and it now generates
+a build fail if thresholds aren't met.
+
+```
+PhantomJS 2.1.1 (Mac OS X 0.0.0): Executed 7 of 7 SUCCESS (3.513 secs / 1.164 secs)
+
+==================== Coverage / Threshold summary =============================
+Statements   : 53.1% ( 24127/45441 ) Threshold : 50%
+Branches     : 29.6% ( 4761/16082 ) Threshold : 50%
+Functions    : 43.59% ( 5065/11619 ) Threshold : 50%
+Lines        : 54.05% ( 22465/41562 ) Threshold : 50%
+================================================================================
+16 05 2017 09:37:11.727:ERROR [Threshold]: Failed minimum coverage threshold expectations
+```

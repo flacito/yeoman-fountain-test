@@ -10,7 +10,7 @@ module.exports = function (config) {
       outputDir: 'test-reports'
     },
     browsers: [
-      'Chrome'
+      'PhantomJS'
     ],
     frameworks: [
       'jasmine'
@@ -21,10 +21,12 @@ module.exports = function (config) {
     ],
     preprocessors: {
       [conf.path.src('index.spec.js')]: [
-        'webpack'
+        'webpack',
+        'coverage',
+        'sourcemap'
       ]
     },
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'coverage', 'remap-coverage', 'threshold'],
     coverageReporter: {
       type: 'html',
       dir: 'coverage/'
@@ -35,9 +37,11 @@ module.exports = function (config) {
     },
     plugins: [
       require('karma-jasmine'),
-      require('karma-junit-reporter'),
+      require('karma-threshold-reporter'),
       require('karma-coverage'),
-      require('karma-chrome-launcher'),
+      require('karma-sourcemap-loader'),
+      require('karma-remap-coverage'),
+      require('karma-phantomjs-launcher'),
       require('karma-webpack')
     ]
   };
